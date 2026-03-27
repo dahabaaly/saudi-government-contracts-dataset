@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "source": "tenders.etimad.sa",
+  "description": "Saudi government contract awards — classified by sector, region, and subcontractor categories",
+  "last_updated": "2026-03-27",
+  "total_records": 253,
+  "powered_by": "https://jatakai.com",
+  "awards": [
+    {"id":1034074,"title":"صيانة ونظافة وتشغيل منشآت ومرافق لواء التدخل السريع ببحرة لمدة 36 شهراً","ministry":"وكالة الحرس الوطني القطاع الغربي","value_sar":20544045,"region":"جدة","sector":"military","subcontractor_categories":["FM","maintenance","catering","security systems","civil"]},
+    {"id":1040617,"title":"تقديم خدمات الامن والحراسات الامنية بالجامعة","ministry":"جامعة المجمعة","value_sar":14000089,"region":"الرياض","sector":"other","subcontractor_categories":["security systems","FM"]},
+    {"id":1031102,"title":"استكمال صيانة اللوحات الإرشادية للطرق والشوارع الرئيسية","ministry":"أمانة العاصمة المقدسة","value_sar":5121813,"region":"مكة المكرمة","sector":"infrastructure","subcontractor_categories":["maintenance","civil","supplies"]},
+    {"id":1033912,"title":"عملية معالجة المسطحات الترابية بالطرق الرئيسية بمكة المكرمة","ministry":"أمانة العاصمة المقدسة","value_sar":4980075,"region":"مكة المكرمة","sector":"infrastructure","subcontractor_categories":["civil","landscaping","maintenance"]},
+    {"id":1037616,"title":"مشروع إنارة الأحياء والشوارع الرئيسية ببلدية طلعة التمياط المرحلة الأولى","ministry":"أمانة منطقة الحدود الشمالية","value_sar":4497650,"region":"منطقة الحدود الشمالية","sector":"infrastructure","subcontractor_categories":["MEP","civil","maintenance"]},
+    {"id":1033941,"title":"تقديم خدمات التشغيل والصيانة والنظافة والضيافة","ministry":"مؤسسة تطوير جزيرة دارين وتاروت","value_sar":4032668,"region":"المنطقة الشرقية","sector":"infrastructure","subcontractor_categories":["FM","maintenance","catering","supplies"]},
+    {"id":1036514,"title":"مشروع الصيانة الطارئة لإصلاح جسر طريق خادم الحرمين الشريفين","ministry":"أمانة المنطقة الشرقية","value_sar":3999999,"region":"المنطقة الشرقية","sector":"infrastructure","subcontractor_categories":["civil","maintenance"]},
+    {"id":1038509,"title":"مشروع إنارة الأحياء والشوارع الرئيسية ببلدية الشعبة المرحلة الثانية","ministry":"أمانة منطقة الحدود الشمالية","value_sar":3807411,"region":"منطقة الحدود الشمالية","sector":"infrastructure","subcontractor_categories":["MEP","civil","maintenance"]},
+    {"id":1037614,"title":"صيانة الطرق داخل طلعة التمياط المرحلة الأولى","ministry":"أمانة منطقة الحدود الشمالية","value_sar":3772000,"region":"منطقة الحدود الشمالية","sector":"infrastructure","subcontractor_categories":["civil","maintenance"]},
+    {"id":1033733,"title":"عملية صيانة وترميم شواخص حد الحرم","ministry":"أمانة العاصمة المقدسة","value_sar":3583860,"region":"مكة المكرمة","sector":"infrastructure","subcontractor_categories":["civil","maintenance"]},
+    {"id":1035312,"title":"توريد المياه المحلاة بالمجمعات الأكاديمية بالفروع في جامعة الملك خالد","ministry":"جامعة الملك خالد","value_sar":3394800,"region":"عسير","sector":"education","subcontractor_categories":["supplies","FM","maintenance"]},
+    {"id":1037615,"title":"مشروع صيانة وتأهيل حديقة ببلدية طلعة التمياط","ministry":"أمانة منطقة الحدود الشمالية","value_sar":2950475,"region":"منطقة الحدود الشمالية","sector":"infrastructure","subcontractor_categories":["landscaping","civil","maintenance"]},
+    {"id":1037214,"title":"الصيانة والتشغيل الفني لمركز نظام مساندة متخذ القرار","ministry":"المباحث العامة","value_sar":2162000,"region":"الرياض","sector":"IT","subcontractor_categories":["IT infrastructure","maintenance","security systems"]},
+    {"id":1040293,"title":"مشروع ردم وتسوية وازالة مخلفات لجميع مواقع ميناء راس الغار العسكري","ministry":"القوات البحرية","value_sar":1400557,"region":"المنطقة الشرقية","sector":"military","subcontractor_categories":["civil"]},
+    {"id":1034372,"title":"مشروع التحكم في نظام التهوية والتكييف في ملحق مسجد حجاج البر بمنى","ministry":"وزارة الشؤون الاسلامية والدعوة والارشاد","value_sar":1369797,"region":"مكة المكرمة","sector":"infrastructure","subcontractor_categories":["MEP","maintenance"]},
+    {"id":1051330,"title":"مشروع احتفال أهالي المنطقة بمناسبة عيد الفطر المبارك","ministry":"أمانة منطقة الجوف","value_sar":988598,"region":"الجوف","sector":"commercial","subcontractor_categories":["catering","supplies","FM"]},
+    {"id":1039538,"title":"توريد وتركيب نظام التكييف لأحد المستودعات التابعة للرئاسة بمنطقة مكة المكرمة","ministry":"الديوان العام لرئاسة أمن الدولة","value_sar":805684,"region":"مكة المكرمة","sector":"military","subcontractor_categories":["MEP"]},
+    {"id":1041042,"title":"توريد وتركيب مكيفات في كتائب الطلبة بميناء راس الغار العسكري","ministry":"القوات البحرية","value_sar":787916,"region":"المنطقة الشرقية","sector":"military","subcontractor_categories":["MEP","supplies","maintenance"]},
+    {"id":1033490,"title":"شفط مياه الصرف الصحي بالقوة البحرية بجازان ومرافقها","ministry":"القوات البحرية","value_sar":570934,"region":"جازان","sector":"military","subcontractor_categories":["FM","maintenance","supplies"]},
+    {"id":1043747,"title":"توريد وتركيب فرش أرضيات موكيت للمكاتب","ministry":"بلدية محافظة القريات","value_sar":488750,"region":"القريات","sector":"commercial","subcontractor_categories":["furniture","supplies","FM"]}
+  ]
+}
