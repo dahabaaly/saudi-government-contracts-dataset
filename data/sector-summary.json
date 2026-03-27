@@ -1,0 +1,22 @@
+{
+  "generated": "2026-03-27",
+  "source": "tenders.etimad.sa",
+  "sectors": [
+    {"sector": "health", "count": 134, "total_value_m_sar": 6.3, "top_subcontractor_categories": ["medical equipment", "supplies", "maintenance", "FM"]},
+    {"sector": "military", "count": 34, "total_value_m_sar": 27.9, "top_subcontractor_categories": ["FM", "maintenance", "civil", "security systems", "MEP"]},
+    {"sector": "infrastructure", "count": 29, "total_value_m_sar": 40.8, "top_subcontractor_categories": ["civil", "maintenance", "MEP", "landscaping"]},
+    {"sector": "other", "count": 27, "total_value_m_sar": 15.1, "top_subcontractor_categories": ["FM", "security systems", "supplies"]},
+    {"sector": "commercial", "count": 23, "total_value_m_sar": 5.2, "top_subcontractor_categories": ["catering", "supplies", "furniture", "FM"]},
+    {"sector": "education", "count": 3, "total_value_m_sar": 3.4, "top_subcontractor_categories": ["supplies", "FM", "maintenance", "IT infrastructure"]},
+    {"sector": "IT", "count": 3, "total_value_m_sar": 2.2, "top_subcontractor_categories": ["IT infrastructure", "maintenance", "security systems"]}
+  ],
+  "regions": [
+    {"region": "الرياض", "count": 151},
+    {"region": "المنطقة الشرقية", "count": 17},
+    {"region": "مكة المكرمة", "count": 15},
+    {"region": "المدينة المنورة", "count": 10},
+    {"region": "جازان", "count": 9},
+    {"region": "القصيم", "count": 7},
+    {"region": "منطقة الحدود الشمالية", "count": 5}
+  ]
+}
