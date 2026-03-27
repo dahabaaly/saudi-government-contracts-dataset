@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saudi Government Contracts Dataset | بيانات عقود الحكومة السعودية</title>
+  <meta name="description" content="Open dataset of 253 Saudi government contract awards from tenders.etimad.sa — classified by sector, region, and subcontractor categories." />
+  <meta property="og:title" content="Saudi Government Contracts Dataset" />
+  <meta property="og:description" content="253 classified awards across 7 sectors and 10+ regions. Powered by Jatakai." />
+  <meta property="og:url" content="https://dahabaaly.github.io/saudi-government-contracts-dataset" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --gold: #f0b429;
+      --gold2: #d4a017;
+      --green: #3fb950;
+      --blue: #58a6ff;
+      --purple: #bc8cff;
+      --orange: #f78166;
+      --red: #ff7b72;
+      --teal: #39d3c3;
+    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; }
+
+    /* HEADER */
+    header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 2rem 1rem; text-align: center; }
+    header .badge-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; }
+    header .badge { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; font-size: 0.75rem; padding: 0.2rem 0.5rem; color: var(--muted); }
+    header h1 { font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 0.5rem; }
+    header h1 span { color: var(--gold); }
+    header p { color: var(--muted); max-width: 620px; margin: 0.5rem auto 0; font-size: 0.95rem; }
+    .arabic-sub { font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+
+    /* MAIN */
+    main { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    section { margin-bottom: 3rem; }
+    h2 { font-size: 1.25rem; font-weight: 600; color: var(--text); margin-bottom: 1.2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+
+    /* STATS GRID */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+    .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; text-align: center; transition: border-color 0.2s; }
+    .stat-card:hover { border-color: var(--gold); }
+    .stat-card .num { font-size: 2.4rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .stat-card .label { font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* TABLE */
+    .table-wrapper { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    thead { background: var(--bg3); }
+    th { padding: 0.75rem 1rem; text-align: left; color: var(--muted); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+    td { padding: 0.75rem 1rem; border-top: 1px solid var(--border); color: var(--text); vertical-align: middle; }
+    tr:hover td { background: var(--bg2); }
+    .title-cell { max-width: 280px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; direction: rtl; text-align: right; }
+    .value-cell { white-space: nowrap; font-family: monospace; color: var(--green); }
+
+    /* SECTOR BADGES */
+    .badge-sector { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .s-military { background: rgba(188, 140, 255, 0.15); color: var(--purple); border: 1px solid rgba(188, 140, 255, 0.3); }
+    .s-infrastructure { background: rgba(88, 166, 255, 0.15); color: var(--blue); border: 1px solid rgba(88, 166, 255, 0.3); }
+    .s-health { background: rgba(63, 185, 80, 0.15); color: var(--green); border: 1px solid rgba(63, 185, 80, 0.3); }
+    .s-education { background: rgba(57, 211, 195, 0.15); color: var(--teal); border: 1px solid rgba(57, 211, 195, 0.3); }
+    .s-commercial { background: rgba(240, 180, 41, 0.15); color: var(--gold); border: 1px solid rgba(240, 180, 41, 0.3); }
+    .s-it { background: rgba(247, 129, 102, 0.15); color: var(--orange); border: 1px solid rgba(247, 129, 102, 0.3); }
+    .s-other { background: rgba(139, 148, 158, 0.15); color: var(--muted); border: 1px solid rgba(139, 148, 158, 0.3); }
+
+    /* SECTOR BREAKDOWN */
+    .sector-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .sector-row { display: flex; align-items: center; gap: 1rem; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1.2rem; }
+    .sector-row .s-name { min-width: 120px; font-weight: 600; }
+    .sector-row .s-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 8px; overflow: hidden; }
+    .sector-row .s-bar { height: 100%; border-radius: 4px; background: var(--gold); }
+    .sector-row .s-count { min-width: 40px; text-align: right; font-family: monospace; color: var(--gold); font-weight: 700; }
+    .sector-row .s-value { min-width: 90px; text-align: right; font-family: monospace; color: var(--muted); font-size: 0.8rem; }
+
+    /* TAGS */
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag { background: var(--bg3); border: 1px solid var(--border); border-radius: 20px; padding: 0.3rem 0.8rem; font-size: 0.8rem; color: var(--text); }
+
+    /* CODE */
+    pre { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; overflow-x: auto; font-size: 0.82rem; line-height: 1.6; color: #e6edf3; }
+    code { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    .kw { color: #ff7b72; }
+    .str { color: #a5d6ff; }
+    .cm { color: #8b949e; }
+    .fn { color: #d2a8ff; }
+    .num { color: #79c0ff; }
+
+    /* CTA */
+    .cta-box { background: linear-gradient(135deg, rgba(240, 180, 41, 0.1) 0%, rgba(212, 160, 23, 0.05) 100%); border: 1px solid var(--gold2); border-radius: 12px; padding: 2.5rem; text-align: center; }
+    .cta-box h2 { border: none; justify-content: center; color: var(--gold); font-size: 1.5rem; }
+    .cta-box p { color: var(--muted); margin: 0.75rem auto 1.5rem; max-width: 500px; }
+    .cta-btn { display: inline-block; background: var(--gold); color: #0d1117; font-weight: 700; font-size: 1rem; padding: 0.85rem 2.2rem; border-radius: 8px; text-decoration: none; transition: background 0.2s, transform 0.1s; }
+    .cta-btn:hover { background: var(--gold2); transform: translateY(-1px); }
+    .cta-arabic { display: block; font-size: 0.85rem; color: var(--muted); margin-top: 0.8rem; }
+
+    /* FOOTER */
+    footer { background: var(--bg2); border-top: 1px solid var(--border); text-align: center; padding: 1.5rem 1rem; color: var(--muted); font-size: 0.8rem; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    footer .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge-row">
+    <span class="badge">📦 253 Records</span>
+    <span class="badge">🏭 7 Sectors</span>
+    <span class="badge">🗺️ 10+ Regions</span>
+    <span class="badge">📜 MIT License</span>
+    <span class="badge">🔗 tenders.etimad.sa</span>
+  </div>
+  <h1>🏗️ Saudi Government <span>Contracts Dataset</span></h1>
+  <p>Open dataset of Saudi government contract awards from tenders.etimad.sa (Etimad) — classified by sector, region, and subcontractor categories.</p>
+  <div class="arabic-sub">بيانات مفتوحة لعقود الحكومة السعودية من منصة اعتماد</div>
+</header>
+
+<main>
+
+  <!-- STATS -->
+  <section>
+    <h2>📊 Dataset at a Glance</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="num">253</div>
+        <div class="label">Contract Awards</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">7</div>
+        <div class="label">Sectors Classified</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">100M+</div>
+        <div class="label">SAR Total Value</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">10+</div>
+        <div class="label">Regions Covered</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">11</div>
+        <div class="label">Subcontractor Categories</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">Free</div>
+        <div class="label">MIT Licensed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE AWARDS TABLE -->
+  <section>
+    <h2>📋 Sample Awards</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Contract (Arabic)</th>
+            <th>Ministry</th>
+            <th>Region</th>
+            <th>Value (SAR)</th>
+            <th>Sector</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1034074</td>
+            <td class="title-cell">صيانة ونظافة وتشغيل منشآت ومرافق لواء التدخل السريع ببحرة</td>
+            <td>الحرس الوطني</td>
+            <td>جدة</td>
+            <td class="value-cell">20,544,045</td>
+            <td><span class="badge-sector s-military">Military</span></td>
+          </tr>
+          <tr>
+            <td>1040617</td>
+            <td class="title-cell">تقديم خدمات الامن والحراسات الامنية بالجامعة</td>
+            <td>جامعة المجمعة</td>
+            <td>الرياض</td>
+            <td class="value-cell">14,000,089</td>
+            <td><span class="badge-sector s-other">Other</span></td>
+          </tr>
+          <tr>
+            <td>1031102</td>
+            <td class="title-cell">استكمال صيانة اللوحات الإرشادية للطرق والشوارع الرئيسية</td>
+            <td>أمانة العاصمة المقدسة</td>
+            <td>مكة المكرمة</td>
+            <td class="value-cell">5,121,813</td>
+            <td><span class="badge-sector s-infrastructure">Infrastructure</span></td>
+          </tr>
+          <tr>
+            <td>1033912</td>
+            <td class="title-cell">عملية معالجة المسطحات الترابية بالطرق الرئيسية بمكة المكرمة</td>
+            <td>أمانة العاصمة المقدسة</td>
+            <td>مكة المكرمة</td>
+            <td class="value-cell">4,980,075</td>
+            <td><span class="badge-sector s-infrastructure">Infrastructure</span></td>
+          </tr>
+          <tr>
+            <td>1037616</td>
+            <td class="title-cell">مشروع إنارة الأحياء والشوارع الرئيسية ببلدية طلعة التمياط</td>
+            <td>أمانة الحدود الشمالية</td>
+            <td>الحدود الشمالية</td>
+            <td class="value-cell">4,497,650</td>
+            <td><span class="badge-sector s-infrastructure">Infrastructure</span></td>
+          </tr>
+          <tr>
+            <td>1037214</td>
+            <td class="title-cell">الصيانة والتشغيل الفني لمركز نظام مساندة متخذ القرار</td>
+            <td>المباحث العامة</td>
+            <td>الرياض</td>
+            <td class="value-cell">2,162,000</td>
+            <td><span class="badge-sector s-it">IT</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTOR BREAKDOWN -->
+  <section>
+    <h2>🏭 Sector Breakdown</h2>
+    <div class="sector-list">
+      <div class="sector-row">
+        <span class="badge-sector s-health s-name">🏥 Health</span>
+        <div class="s-bar-wrap"><div class="s-bar" style="width:100%; background:#3fb950;"></div></div>
+        <span class="s-count">134</span>
+        <span class="s-value">SAR 6.3M</span>
+      </div>
+      <div class="sector-row">
+        <span class="badge-sector s-military s-name">🪖 Military</span>
+        <div class="s-bar-wrap"><div class="s-bar" style="width:25%; background:#bc8cff;"></div></div>
+        <span class="s-count">34</span>
+        <span class="s-value">SAR 27.9M</span>
+      </div>
+      <div class="sector-row">
+        <span class="badge-sector s-infrastructure s-name">🏗️ Infra</span>
+        <div class="s-bar-wrap"><div class="s-bar" style="width:22%; background:#58a6ff;"></div></div>
+        <span class="s-count">29</span>
+        <span class="s-value">SAR 40.8M</span>
+      </div>
+      <div class="sector-row">
+        <span class="badge-sector s-other s-name">🏢 Other</span>
+        <div class="s-bar-wrap"><div class="s-bar" style="width:20%; background:#8b949e;"></div></div>
+        <span class="s-count">27</span>
+        <span class="s-value">SAR 15.1M</span>
+      </div>
+      <div class="sector-row">
+        <span class="badge-sector s-commercial s-name">🛒 Comm.</span>
+        <div class="s-bar-wrap"><div class="s-bar" style="width:17%; background:#f0b429;"></div></div>
+        <span class="s-count">23</span>
+        <span class="s-value">SAR 5.2M</span>
+      </div>
+      <div class="sector-row">
+        <span class="badge-sector s-education s-name">🎓 Edu</span>
+        <div class="s-bar-wrap"><div class="s-bar" style="width:2%; background:#39d3c3;"></div></div>
+        <span class="s-count">3</span>
+        <span class="s-value">SAR 3.4M</span>
+      </div>
+      <div class="sector-row">
+        <span class="badge-sector s-it s-name">💻 IT</span>
+        <div class="s-bar-wrap"><div class="s-bar" style="width:2%; background:#f78166;"></div></div>
+        <span class="s-count">3</span>
+        <span class="s-value">SAR 2.2M</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBCONTRACTOR CATEGORIES -->
+  <section>
+    <h2>🔧 Subcontractor Categories</h2>
+    <div class="tags">
+      <span class="tag">FM (Facilities Management)</span>
+      <span class="tag">Maintenance</span>
+      <span class="tag">Civil Works</span>
+      <span class="tag">MEP</span>
+      <span class="tag">Security Systems</span>
+      <span class="tag">Supplies</span>
+      <span class="tag">Catering</span>
+      <span class="tag">Landscaping</span>
+      <span class="tag">IT Infrastructure</span>
+      <span class="tag">Medical Equipment</span>
+      <span class="tag">Furniture</span>
+    </div>
+  </section>
+
+  <!-- USAGE CODE -->
+  <section>
+    <h2>💻 Quick Start</h2>
+    <pre><code><span class="cm">// Fetch and filter Saudi government contracts</span>
+<span class="kw">const</span> response = <span class="kw">await</span> <span class="fn">fetch</span>(
+  <span class="str">'https://raw.githubusercontent.com/dahabaaly/saudi-government-contracts-dataset/main/data/awards.json'</span>
+);
+<span class="kw">const</span> data = <span class="kw">await</span> response.<span class="fn">json</span>();
+
+<span class="cm">// Filter by sector</span>
+<span class="kw">const</span> infrastructure = data.awards.<span class="fn">filter</span>(a => a.sector === <span class="str">'infrastructure'</span>);
+
+<span class="cm">// Filter by subcontractor category</span>
+<span class="kw">const</span> mepContracts = data.awards.<span class="fn">filter</span>(a =>
+  a.subcontractor_categories.<span class="fn">includes</span>(<span class="str">'MEP'</span>)
+);
+
+<span class="cm">// Sort by value (highest first)</span>
+<span class="kw">const</span> topContracts = [...data.awards].<span class="fn">sort</span>((a, b) => b.value_sar - a.value_sar);
+
+console.<span class="fn">log</span>(<span class="str">`Found <span class="num">${mepContracts.length}</span> MEP opportunities`</span>);</code></pre>
+    <p style="margin-top: 0.75rem; color: var(--muted); font-size: 0.85rem;">
+      Raw data URL: <code style="color: var(--gold); font-size: 0.8rem;">https://raw.githubusercontent.com/dahabaaly/saudi-government-contracts-dataset/main/data/awards.json</code>
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="cta-box">
+      <h2>🧠 Want Real-Time Daily Intelligence?</h2>
+      <p>This dataset is a snapshot. Jatakai monitors tenders.etimad.sa every day and delivers classified contract alerts directly to your sector — so you never miss a relevant opportunity.</p>
+      <a href="https://jatakai.com" target="_blank" rel="noopener" class="cta-btn">→ Visit Jatakai.com</a>
+      <span class="cta-arabic">جاتك | استخبارات المناقصات الحكومية السعودية</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="https://github.com/dahabaaly/saudi-government-contracts-dataset" target="_blank">GitHub Repository</a>
+    <a href="https://jatakai.com" target="_blank">Jatakai.com</a>
+    <a href="https://tenders.etimad.sa" target="_blank">tenders.etimad.sa</a>
+    <a href="https://raw.githubusercontent.com/dahabaaly/saudi-government-contracts-dataset/main/data/awards.json" target="_blank">Raw JSON</a>
+  </div>
+  <div>MIT License · Data source: <a href="https://tenders.etimad.sa" target="_blank">tenders.etimad.sa</a> (public Saudi government procurement data) · Powered by <a href="https://jatakai.com" target="_blank">Jatakai</a></div>
+</footer>
+
+</body>
+</html>
